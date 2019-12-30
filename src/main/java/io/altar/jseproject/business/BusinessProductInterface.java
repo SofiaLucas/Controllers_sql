@@ -8,7 +8,7 @@ public interface BusinessProductInterface extends BusinessServiceInterface<Produ
 
 //	static final ProductRepository PDB = ProductRepository.getInstance();
 
-	void addProductToShelf(Product productToAdd, long selectedId);
+	void addProductToShelf(Product productToAdd, long selectedId) throws NoSuchFieldException;
 
 	Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf);
 }

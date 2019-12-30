@@ -9,7 +9,7 @@ public interface BusinessShelfInterface extends BusinessServiceInterface <Shelf>
 	
 	//static final ShelfRepository SDB = ShelfRepository.getInstance();
 	
-	long[] selectEmptyShelves();
+	List<Long> selectEmptyShelves();
 	
 	public List<Shelf> removeProductFromShelf(long id);
 	

@@ -34,8 +34,12 @@ public class EntityBusiness<R extends EntityRepository<E>, E extends Entity> imp
 	}
 
 	@Override
-	public E getbyId(long id) {
-		return repository.getbyId(id);
+	public E getbyId(long id) throws IllegalArgumentException {
+		E entity = repository.getbyId(id);
+		if (entity == null) {
+			throw new IllegalArgumentException("id does not exist");
+		}
+		return entity;
 	}
 
 	@Override

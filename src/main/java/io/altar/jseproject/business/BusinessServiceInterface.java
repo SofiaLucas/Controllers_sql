@@ -14,7 +14,7 @@ public interface BusinessServiceInterface<T extends Entity> {
 
 	Collection<T> getAll();
 	
-	T getbyId(long id);
+	 T getbyId(long id) throws NoSuchFieldException;
 
 	 long [] getAllIds();
 	

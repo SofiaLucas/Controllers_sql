@@ -16,7 +16,7 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 	}
 
 	@Override
-	public long[] selectEmptyShelves() {
+	public List<Long> selectEmptyShelves() {
 		Collection<Shelf> allShelves = repository.getAll();
 		Iterator<Shelf> iterator = allShelves.iterator();
 		List<Long> emptyShelvesIds = new ArrayList<Long>();
@@ -28,12 +28,12 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 			}
 		}
 
-		final long[] emptyShelvesIdsArr = new long[emptyShelvesIds.size()];
-		int index = 0;
-		for (final Long value : emptyShelvesIds) {
-			emptyShelvesIdsArr[index++] = value;
-		}
-		return emptyShelvesIdsArr;
+//		final long[] emptyShelvesIdsArr = new long[emptyShelvesIds.size()];
+//		int index = 0;
+//		for (final Long value : emptyShelvesIds) {
+//			emptyShelvesIdsArr[index++] = value;
+//		}
+		return emptyShelvesIds;
 	}
 
 	@Override
@@ -51,4 +51,26 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 		}
 		return removedShelves;
 	}
+	
+	
+	
+	
+	//// joao
+//	public void updateProductOnShelfs(long productId, List<Long> shelfsOld, List<Long> shelfsNew) {
+//		for (Long shelfId : shelfsOld) {
+//			Shelf shelf = repository.getEntity(shelfId);
+//			if (shelfsNew.indexOf(shelfId) == -1) {
+//				shelf.setProductId((long)0);
+//				repository.editEntity(shelf);
+//			}
+//		}
+//		for (Long shelfId : shelfsNew) {
+//			Shelf shelf = repository.getEntity(shelfId);
+//			if (shelfsOld.indexOf(shelfId) == -1) {
+//				shelf.setProductId(productId);
+//				repository.editEntity(shelf);
+//			}
+//		}
+//	}
+
 }

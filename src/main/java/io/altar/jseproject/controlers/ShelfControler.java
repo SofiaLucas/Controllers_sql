@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import io.altar.jseproject.business.ShelfBusiness;
@@ -51,8 +52,15 @@ public class ShelfControler {
 	@DELETE
 	@Path("/{id}")
 	public void remove(@PathParam("id") long idToRemove) {
-		Shelf shelfToRemove = shelvesDataBase.getbyId(idToRemove);
-		shelvesDataBase.remove(shelfToRemove);
+		Shelf shelfToRemove;
+		try {
+			shelfToRemove = shelvesDataBase.getbyId(idToRemove);
+			shelvesDataBase.remove(shelfToRemove);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 			
 			}
 	
@@ -69,8 +77,13 @@ public class ShelfControler {
 	@GET
 	@Path("/{id}")
 	@Produces( MediaType.APPLICATION_JSON ) 
-	public Shelf consult(@PathParam("id") long id) {
-		return shelvesDataBase.getbyId(id);
+	public Response consult(@PathParam("id") long id) {		
+		try {
+			shelvesDataBase.getbyId(id);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.status(400).entity(e.getMessage()).build();
+		}
 
 	}
 
