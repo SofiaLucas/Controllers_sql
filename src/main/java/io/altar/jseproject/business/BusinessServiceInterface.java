@@ -13,13 +13,13 @@ public interface BusinessServiceInterface<T extends Entity> {
 	void edit(T entity); //
 
 	Collection<T> getAll();
-
+	
 	T getbyId(long id);
 
-	long[] getAllIds();
-
+	 long [] getAllIds();
+	
 	boolean isEmpty();
-
+	
 	void size();
-
+	
 }

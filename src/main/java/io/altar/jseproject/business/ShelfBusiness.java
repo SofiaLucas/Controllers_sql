@@ -6,61 +6,18 @@ import java.util.Iterator;
 import java.util.List;
 
 import io.altar.jseproject.model.Shelf;
+import io.altar.jseproject.repositories.ProductRepository;
+import io.altar.jseproject.repositories.ShelfRepository;
 
-public class ShelfBusiness implements BusinessShelfInterface {
+public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implements BusinessShelfInterface {
 
-	@Override
-	public void create(Shelf entity) {
-		SDB.create(entity);
+	public ShelfBusiness() {
+		repository = ShelfRepository.getInstance();
 	}
 
 	@Override
-	public void remove(Shelf entity) {
-		if(entity.getProductId()!=0) {
-		removeProductFromShelf(entity.getProductId());
-		}
-		SDB.remove(entity);
-	}
-
-	@Override
-	public void edit(Shelf entity) {
-		SDB.edit(entity);
-
-	}
-
-	@Override
-	public Collection<Shelf> getAll() {
-		return SDB.getAll();
-
-	}
-
-	@Override
-	public Shelf getbyId(long id) {
-		return SDB.getbyId(id);
-
-	}
-
-	@Override
-	public long[] getAllIds() {
-		return SDB.getAllIds();
-
-	}
-
-	@Override
-	public boolean isEmpty() {
-		return SDB.isEmpty();
-
-	}
-
-	@Override
-	public void size() {
-		SDB.size();
-
-	}
-
-	@Override
-	public List<Long> selectEmptyShelves() {
-		Collection<Shelf> allShelves = SDB.getAll();
+	public long[] selectEmptyShelves() {
+		Collection<Shelf> allShelves = repository.getAll();
 		Iterator<Shelf> iterator = allShelves.iterator();
 		List<Long> emptyShelvesIds = new ArrayList<Long>();
 
@@ -71,20 +28,20 @@ public class ShelfBusiness implements BusinessShelfInterface {
 			}
 		}
 
-//		final long[] emptyShelvesIdsArr = new long[emptyShelvesIds.size()];
-//		int index = 0;
-//		for (final Long value : emptyShelvesIds) {
-//			emptyShelvesIdsArr[index++] = value;
-//		}
-		return emptyShelvesIds;
+		final long[] emptyShelvesIdsArr = new long[emptyShelvesIds.size()];
+		int index = 0;
+		for (final Long value : emptyShelvesIds) {
+			emptyShelvesIdsArr[index++] = value;
+		}
+		return emptyShelvesIdsArr;
 	}
 
 	@Override
 	public List<Shelf> removeProductFromShelf(long id) {
-		Collection<Shelf> allShelves = SDB.getAll();
+		Collection<Shelf> allShelves = repository.getAll();
 		Iterator<Shelf> iterator = allShelves.iterator();
 		List<Shelf> removedShelves = new ArrayList<Shelf>();
-
+		
 		while (iterator.hasNext()) {
 			Shelf shelf = (Shelf) iterator.next();
 			if (shelf.getProductId() == id) {
