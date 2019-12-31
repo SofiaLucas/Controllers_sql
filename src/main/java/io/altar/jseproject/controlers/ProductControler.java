@@ -53,7 +53,7 @@ public class ProductControler {
 		} catch (Exception e) {
 			return Response.status(400).entity(e.getMessage()).build();
 		}
-		
+
 	}
 
 	@DELETE
@@ -82,66 +82,6 @@ public class ProductControler {
 		} catch (Exception e) {
 			return Response.status(400).entity(e.getMessage()).build();
 		}
-		
-//		if (product.getShelvesIds().isEmpty()) {
-//			productsDataBase.edit(product);
-//			return Response.status(Response.Status.OK).entity(product).build();
-//		}
-
-//		else {
-//
-//			Product oldProd = productsDataBase.getbyId(id);
-//			
-//			
-//			
-//			
-//			
-//			List<Long> oldProdShelves = oldProd.getShelvesIds();
-//
-//			List<Long> emptyShelvesIds = shelvesDataBase.selectEmptyShelves();
-//
-//			// if(product.getShelvesIds().containsAll(oldProdShelves)) {
-//
-//			product.getShelvesIds().removeAll(oldProdShelves);
-//
-//			boolean emptyShelf = true;
-//			for (int j = 0; j < emptyShelvesIds.size(); j++) {
-//				for (int i = 0; i < product.getShelvesIds().size(); i++) {
-//
-//					if (product.getShelvesIds().get(i) != emptyShelvesIds.get(j)) {
-//						emptyShelf = false;
-//						break;
-//					}
-//				}
-//			}
-//
-//			product.getShelvesIds().addAll(oldProdShelves);
-//			if (emptyShelf = true) {
-//				productsDataBase.edit(product);
-//
-//				return Response.status(Response.Status.OK).entity(product).build();
-//
-//			} else {
-//				return Response.status(Response.Status.BAD_REQUEST)
-//						.entity("Adicionou prateleira(s) que já se encontra(m) ocupada(s)").build();
-//			}
-//		}
-//			if (!product.getShelvesIds().contains(emptyShelvesIds.get(i))) {
-//
-//				return Response.status(Response.Status.BAD_REQUEST).entity("").build();
-//				
-//			} else {
-//
-//				productsDataBase.edit(product);
-//
-//				return Response.status(Response.Status.OK).entity(product).build();
-//			}
-
-//		
-
-		// List<Long> newShelvesInProd = product.getShelvesIds().stream().filter(a ->
-		// !a.equals(oldProdShelves)).collect(Collectors.toList());
-
 	}
 
 	@GET
