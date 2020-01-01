@@ -33,12 +33,6 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	@Override
 	public List<Long> selectEmptyShelves() {
 		Collection<Shelf> allShelves = repository.getAll();

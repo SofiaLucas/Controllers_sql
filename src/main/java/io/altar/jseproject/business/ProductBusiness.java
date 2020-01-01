@@ -65,9 +65,11 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product> 
 		}
 
 		if (!oldProdShelves.equals(newProdShelves)) {
-			SB.updateProductOnShelfs(product.getId(), oldProdShelves, newProdShelves);
+			SB.updateProductOnShelfs(product.getId(), oldProdShelves, product.getShelvesIds()); // ver se fez diferença
 		}
 
+		
+		//-----
 		int[] iva = { 6, 13, 23 };
 		boolean check = false;
 		for (int i = 0; i < iva.length; i++) {
@@ -111,8 +113,7 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product> 
 //	}
 
 	@Override
-	public Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf) { // acho q esta é p o
-																								// remove
+	public Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf) { // acho q esta é p o remove
 		List<Long> shelvesIdsInProduct = productInShelf.getShelvesIds();
 
 		for (int i = 0; i < shelvesIdsInProduct.size(); i++) {

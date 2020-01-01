@@ -1,6 +1,5 @@
 package io.altar.jseproject.controlers;
 
-import java.security.Provider.Service;
 import java.util.Collection;
 
 import javax.ws.rs.Consumes;
@@ -18,34 +17,32 @@ import javax.ws.rs.core.UriInfo;
 
 import io.altar.jseproject.business.EntityBusiness;
 import io.altar.jseproject.model.Entity;
-import io.altar.jseproject.model.Product;
 import io.altar.jseproject.repositories.EntityRepository;
+//@Path("")
+public class EntityControler<E extends Entity, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
 
-public class EntityControler <E extends Entity, B extends EntityBusiness<R, E>, R extends EntityRepository<E>>{
+	EntityBusiness<R, E> service = new EntityBusiness<R, E>();
 
-	EntityControler <E, B, R> service = new EntityControler <E, B, R>();
-	
-	
-	@Context
-	protected UriInfo context;
-
-	@GET
-	@Path("status")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String status() {
-		return "Url : " + context.getRequestUri().toString() + " is OK";
-	}
+//	@Context
+//	protected UriInfo context;
+//
+//	@GET
+//	@Path("status")
+//	@Produces(MediaType.TEXT_PLAIN)
+//	public String status() {
+//		return "Url : " + context.getRequestUri().toString() + " is OK";
+//	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Entity> getAll() {
+	public Collection<E> getAll() {
 		return service.getAll();
 	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(Entity entity) {
+	public Response create(E entity) {
 		try {
 			service.create(entity);
 			return Response.ok().build();
@@ -58,8 +55,8 @@ public class EntityControler <E extends Entity, B extends EntityBusiness<R, E>, 
 	@DELETE
 	@Path("/{id}")
 	public Response remove(@PathParam("id") long idToRemove) {
-		Entity entityToRemove;
-					try {
+		E entityToRemove;
+		try {
 			entityToRemove = service.getbyId(idToRemove);
 			service.remove(entityToRemove);
 			return Response.ok().build();
@@ -73,7 +70,7 @@ public class EntityControler <E extends Entity, B extends EntityBusiness<R, E>, 
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response edit(@PathParam("id") long id, Entity entity) {
+	public Response edit(@PathParam("id") long id, E entity) {
 
 		try {
 			service.edit(entity);
@@ -96,5 +93,4 @@ public class EntityControler <E extends Entity, B extends EntityBusiness<R, E>, 
 
 	}
 
-	
 }

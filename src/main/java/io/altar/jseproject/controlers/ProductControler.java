@@ -23,10 +23,6 @@ import io.altar.jseproject.repositories.ProductRepository;
 
 @Path("products")
 public class ProductControler extends EntityControler <Product, ProductBusiness, ProductRepository>{
-
-	ProductBusiness productsDataBase = new ProductBusiness();
-	ShelfBusiness shelvesDataBase = new ShelfBusiness();
-
 	
 	@Context
 	protected UriInfo context;
@@ -37,65 +33,5 @@ public class ProductControler extends EntityControler <Product, ProductBusiness,
 	public String status() {
 		return "Url : " + context.getRequestUri().toString() + " is OK";
 	}
-
-//	@GET
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Collection<Product> getAllProducts() {
-//		return productsDataBase.getAll();
-//	}
-//
-//	@POST
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response createProduct(Product product) {
-//		try {
-//			productsDataBase.create(product);
-//			return Response.ok().build();
-//		} catch (Exception e) {
-//			return Response.status(400).entity(e.getMessage()).build();
-//		}
-//
-//	}
-//
-//	@DELETE
-//	@Path("/{id}")
-//	public Response removeProduct(@PathParam("id") long idToRemove) {
-//		Product productToRemove;
-//		try {
-//			productToRemove = productsDataBase.getbyId(idToRemove);
-//			productsDataBase.remove(productToRemove);
-//			return Response.ok().build();
-//		} catch (IllegalArgumentException e) {
-//			e.printStackTrace();
-//			return Response.status(400).entity(e.getMessage()).build();
-//		}
-//	}
-//
-//	@PUT
-//	@Path("/{id}")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response edit(@PathParam("id") long id, Product product) {
-//
-//		try {
-//			productsDataBase.edit(product);
-//			return Response.ok().build();
-//		} catch (Exception e) {
-//			return Response.status(400).entity(e.getMessage()).build();
-//		}
-//	}
-//
-//	@GET
-//	@Path("/{id}")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public Response consult(@PathParam("id") long id) {
-//		try {
-//			productsDataBase.getbyId(id);
-//			return Response.ok().build();
-//		} catch (Exception e) {
-//			return Response.status(400).entity(e.getMessage()).build();
-//		}
-//
-//	}
 
 }
