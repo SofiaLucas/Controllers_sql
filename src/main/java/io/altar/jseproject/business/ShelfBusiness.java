@@ -11,7 +11,7 @@ import io.altar.jseproject.repositories.ProductRepository;
 import io.altar.jseproject.repositories.ShelfRepository;
 
 public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implements BusinessShelfInterface {
-	ProductBusiness PB = new ProductBusiness();
+	public static final ProductBusiness PB = new ProductBusiness();
 	
 	public ShelfBusiness() {
 		repository = ShelfRepository.getInstance();

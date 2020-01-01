@@ -35,57 +35,57 @@ public class ShelfControler {
 		return "Url : " + context.getRequestUri().toString() + " is OK";
 	}
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Shelf> getAllShelves() {
-		return shelvesDataBase.getAll();
-	}
-
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf create(Shelf shelf) {
-		shelvesDataBase.create(shelf);
-		return shelf;
-	}
-	
-	@DELETE
-	@Path("/{id}")
-	public void remove(@PathParam("id") long idToRemove) {
-		Shelf shelfToRemove;
-		try {
-			shelfToRemove = shelvesDataBase.getbyId(idToRemove);
-			shelvesDataBase.remove(shelfToRemove);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-			}
-	
-	@PUT
-	@Path("/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf edit (@PathParam("id") long id, Shelf shelf) {
-		shelvesDataBase.edit(shelf);
-		return shelf;
-		
-	}
-	
-	@GET
-	@Path("/{id}")
-	@Produces( MediaType.APPLICATION_JSON ) 
-	public Response consult(@PathParam("id") long id) {		
-		try {
-			shelvesDataBase.getbyId(id);
-			return Response.ok().build();
-		} catch (Exception e) {
-			return Response.status(400).entity(e.getMessage()).build();
-		}
-
-	}
+//	@GET
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Collection<Shelf> getAllShelves() {
+//		return shelvesDataBase.getAll();
+//	}
+//
+//	@POST
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Shelf create(Shelf shelf) {
+//		shelvesDataBase.create(shelf);
+//		return shelf;
+//	}
+//	
+//	@DELETE
+//	@Path("/{id}")
+//	public void remove(@PathParam("id") long idToRemove) {
+//		Shelf shelfToRemove;
+//		try {
+//			shelfToRemove = shelvesDataBase.getbyId(idToRemove);
+//			shelvesDataBase.remove(shelfToRemove);
+//		} catch (IllegalArgumentException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//			
+//			}
+//	
+//	@PUT
+//	@Path("/{id}")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public Shelf edit (@PathParam("id") long id, Shelf shelf) {
+//		shelvesDataBase.edit(shelf);
+//		return shelf;
+//		
+//	}
+//	
+//	@GET
+//	@Path("/{id}")
+//	@Produces( MediaType.APPLICATION_JSON ) 
+//	public Response consult(@PathParam("id") long id) {		
+//		try {
+//			shelvesDataBase.getbyId(id);
+//			return Response.ok().build();
+//		} catch (Exception e) {
+//			return Response.status(400).entity(e.getMessage()).build();
+//		}
+//
+//	}
 
 	
 
