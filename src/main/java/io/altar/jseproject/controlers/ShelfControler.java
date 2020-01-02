@@ -15,15 +15,15 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import io.altar.jseproject.business.ProductBusiness;
 import io.altar.jseproject.business.ShelfBusiness;
+import io.altar.jseproject.model.Product;
 import io.altar.jseproject.model.Shelf;
+import io.altar.jseproject.repositories.ProductRepository;
 
 @Path("shelves")
-public class ShelfControler {
+public class ShelfControler extends EntityControler <Product, ProductBusiness, ProductRepository>{
 
-	
-	
-	ShelfBusiness shelvesDataBase = new ShelfBusiness();
 	
 	@Context
 	protected UriInfo context;
@@ -34,59 +34,5 @@ public class ShelfControler {
 	public String status() {
 		return "Url : " + context.getRequestUri().toString() + " is OK";
 	}
-
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public Collection<Shelf> getAllShelves() {
-		return shelvesDataBase.getAll();
-	}
-
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf create(Shelf shelf) {
-		shelvesDataBase.create(shelf);
-		return shelf;
-	}
-	
-	@DELETE
-	@Path("/{id}")
-	public void remove(@PathParam("id") long idToRemove) {
-		Shelf shelfToRemove;
-		try {
-			shelfToRemove = shelvesDataBase.getbyId(idToRemove);
-			shelvesDataBase.remove(shelfToRemove);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-			
-			}
-	
-	@PUT
-	@Path("/{id}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Shelf edit (@PathParam("id") long id, Shelf shelf) {
-		shelvesDataBase.edit(shelf);
-		return shelf;
-		
-	}
-	
-	@GET
-	@Path("/{id}")
-	@Produces( MediaType.APPLICATION_JSON ) 
-	public Response consult(@PathParam("id") long id) {		
-		try {
-			shelvesDataBase.getbyId(id);
-			return Response.ok().build();
-		} catch (Exception e) {
-			return Response.status(400).entity(e.getMessage()).build();
-		}
-
-	}
-
-	
 
 }

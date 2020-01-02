@@ -10,7 +10,7 @@ import io.altar.jseproject.repositories.ProductRepository;
 
 public class ProductBusiness extends EntityBusiness<ProductRepository, Product> implements BusinessProductInterface {
 
-	ShelfBusiness SB = new ShelfBusiness();
+	public static final ShelfBusiness SB = new ShelfBusiness();
 
 	public ProductBusiness() {
 		repository = ProductRepository.getInstance();
@@ -35,68 +35,41 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product> 
 		}
 
 		repository.create(prod);
-
 	}
 
-	
 	@Override
-	public void edit(Product product) throws IllegalArgumentException{
+	public void edit(Product product) throws IllegalArgumentException {
 		Product oldProd = repository.getbyId(product.getId());
-		
+
 		List<Long> oldProdShelves = oldProd.getShelvesIds();
 		List<Long> newProdShelves = product.getShelvesIds();
 		List<Long> emptyShelvesIds = SB.selectEmptyShelves();
-		
-			
-		
-		if(!newProdShelves.isEmpty()&&emptyShelvesIds.isEmpty()) {
+
+		if (!newProdShelves.isEmpty() && emptyShelvesIds.isEmpty()) {
 			throw new IllegalArgumentException("ids de prateleiras invalidos - nao ha prateleiras vazias");
 		}
-		
-		System.out.println("!newProdShelves.isEmpty() : " + !newProdShelves.isEmpty());
-		System.out.println("!oldProdShelves.equals(newProdShelves) : " + !oldProdShelves.equals(newProdShelves));
-		System.out.println("emptyShelvesIds : " + emptyShelvesIds);
-		
+
 		if (!newProdShelves.isEmpty() && !oldProdShelves.equals(newProdShelves)) {
-			
+
 			System.out.println("newProdShelves antes do remove : " + newProdShelves);
 			newProdShelves.removeAll(oldProdShelves);
+			System.out.println("oldProdShelves: " + oldProdShelves);
 			System.out.println("newProdShelves depois do remove : " + newProdShelves);
-			boolean validShelfId = false;
-				for (int j = 0; j < emptyShelvesIds.size(); j++) {
-					for (int i = 0; i < newProdShelves.size(); i++) {
-System.out.println("ëntrei no for");
 
-//retainAll newProdShelves.retainAll(emptyShelvesIds)
-						if (newProdShelves.get(i) == emptyShelvesIds.get(j)) {
-							validShelfId = true;
-							break;												
-						}
-					}
+			for (Long shId : newProdShelves) {
+				if (!emptyShelvesIds.contains(shId)) {
+					throw new IllegalArgumentException(
+							"ids de prateleiras invalidos; prateleiras vazias:" + emptyShelvesIds);
 				}
-
-				if( validShelfId = false) {
-					throw new IllegalArgumentException("ids de prateleiras invalidos");
-				}
-				
-				newProdShelves.addAll(oldProdShelves);
-				
-				
-				
-				
-			//falta alterar na prat
-		
-		
-		
-//			Product oldProduct = repository.getbyId(product.getId());
-//			if (!oldProduct.getShelvesIds().equals(product.getShelvesIds())) {
-//				SB.updateProductOnShelfs(product.getId(),oldProduct.getShelvesIds(),product.getShelvesIds());
 			}
+		}
 
+		if (!oldProdShelves.equals(newProdShelves)) {
+			SB.updateProductOnShelfs(product.getId(), oldProdShelves, product.getShelvesIds()); // ver se fez diferença
+		}
 
 		
-		
-		
+		//-----
 		int[] iva = { 6, 13, 23 };
 		boolean check = false;
 		for (int i = 0; i < iva.length; i++) {
@@ -111,21 +84,33 @@ System.out.println("ëntrei no for");
 		if (product.getDiscount() < 0 || product.getDiscount() > 100) {
 			throw new IllegalArgumentException("discount should be 0-100");
 		}
-		
-		
+
 		repository.edit(product);
+		// addProductToShelf (product, newProdShelves);
 
 	}
-	
-	
+
 	@Override
-	public void addProductToShelf(Product productToAdd, long selectedId)  { // ten de ser editado
-		Shelf shelfSelected = SB.getbyId(selectedId);
-		shelfSelected.setProductId(productToAdd.getId());
-		productToAdd.addShelfId(shelfSelected.getId());
-		SB.edit(shelfSelected);
-		repository.edit(productToAdd);
+	public void remove(Product productToRemove) {
+		if (!productToRemove.getShelvesIds().isEmpty()) {
+			SB.removeProductFromShelf(productToRemove.getId());
+		}
+		repository.remove(productToRemove);
+
 	}
+
+//	@Override
+//	public void addProductToShelf(Product productToAdd, List<Long> newProdShelves) { // ten de ser editado
+//		for (Long shelfId : newProdShelves) {
+//				
+//		Shelf shelfSelected = SB.getbyId(shelfId);
+//		shelfSelected.setProductId(productToAdd.getId());
+//		productToAdd.addShelfId(shelfSelected.getId());
+//		
+//		SB.edit(shelfSelected);
+//		}
+//		repository.edit(productToAdd);
+//	}
 
 	@Override
 	public Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf) { // acho q esta é p o remove
@@ -142,6 +127,4 @@ System.out.println("ëntrei no for");
 		return productInShelf;
 	}
 
-	
-	
 }
