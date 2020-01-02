@@ -14,7 +14,7 @@ public interface BusinessServiceInterface<T extends Entity> {
 
 	Collection<T> getAll();
 	
-	 T getbyId(long id) throws NoSuchFieldException;
+	 T getbyId(long id) throws IllegalArgumentException;
 
 	 long [] getAllIds();
 	

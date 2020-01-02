@@ -1,11 +1,7 @@
 package io.altar.jseproject.business;
 
 import java.util.List;
-
-import javax.ws.rs.core.Response;
-
 import io.altar.jseproject.model.Product;
-import io.altar.jseproject.model.Shelf;
 import io.altar.jseproject.repositories.ProductRepository;
 
 public class ProductBusiness extends EntityBusiness<ProductRepository, Product> implements BusinessProductInterface {
@@ -40,7 +36,6 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product> 
 	@Override
 	public void edit(Product product) throws IllegalArgumentException {
 		Product oldProd = repository.getbyId(product.getId());
-
 		List<Long> oldProdShelves = oldProd.getShelvesIds();
 		List<Long> newProdShelves = product.getShelvesIds();
 		List<Long> emptyShelvesIds = SB.selectEmptyShelves();

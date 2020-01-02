@@ -5,7 +5,7 @@ import java.util.Collection;
 import io.altar.jseproject.model.Entity;
 import io.altar.jseproject.repositories.EntityRepository;
 
-public class EntityBusiness<R extends EntityRepository<E>, E extends Entity> implements BusinessServiceInterface<E> {
+public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity> implements BusinessServiceInterface<E> {
 
 	protected R repository;
 

@@ -10,28 +10,17 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 import io.altar.jseproject.business.EntityBusiness;
 import io.altar.jseproject.model.Entity;
 import io.altar.jseproject.repositories.EntityRepository;
-//@Path("")
+
 public class EntityControler<E extends Entity, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
 
-	EntityBusiness<R, E> service = new EntityBusiness<R, E>();
+	EntityBusiness<R, E> service;
 
-//	@Context
-//	protected UriInfo context;
-//
-//	@GET
-//	@Path("status")
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String status() {
-//		return "Url : " + context.getRequestUri().toString() + " is OK";
-//	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

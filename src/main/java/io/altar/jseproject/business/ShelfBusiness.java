@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-
 import io.altar.jseproject.model.Product;
 import io.altar.jseproject.model.Shelf;
-import io.altar.jseproject.repositories.ProductRepository;
 import io.altar.jseproject.repositories.ShelfRepository;
 
 public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implements BusinessShelfInterface {
@@ -17,6 +15,20 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 		repository = ShelfRepository.getInstance();
 	}
 
+	
+	@Override
+	public void edit(Shelf shelf) throws IllegalArgumentException{
+		
+		Shelf oldShelf = repository.getbyId(shelf.getId());
+		if( oldShelf.getId() != shelf.getId()) {
+			throw new IllegalArgumentException("id invalido");
+		}
+		//if(shelf.getId())
+	//	shelf.getProductId()
+		
+		repository.edit(shelf);
+
+	}
 	
 	
 	@Override

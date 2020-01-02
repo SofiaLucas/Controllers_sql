@@ -1,30 +1,27 @@
 package io.altar.jseproject.controlers;
 
-import java.util.Collection;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import io.altar.jseproject.business.ProductBusiness;
 import io.altar.jseproject.business.ShelfBusiness;
-import io.altar.jseproject.model.Product;
 import io.altar.jseproject.model.Shelf;
-import io.altar.jseproject.repositories.ProductRepository;
+import io.altar.jseproject.repositories.ShelfRepository;
 
 @Path("shelves")
-public class ShelfControler extends EntityControler <Product, ProductBusiness, ProductRepository>{
+public class ShelfControler extends EntityControler <Shelf, ShelfBusiness, ShelfRepository>{
 
 	
+	public ShelfControler() {
+		service = new ShelfBusiness();
+	}
+
 	@Context
 	protected UriInfo context;
 
