@@ -1,23 +1,35 @@
 package io.altar.jseproject.model;
 
-public class Shelf extends Entity {
+import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@Entity
+@NamedQueries({
+	@NamedQuery (name=Shelf.GET_ALL_SHELVES, query= "SELECT s FROM Shelf s")
+})
+public class Shelf extends Entity_ implements Serializable{
+	
+	public static final String GET_ALL_SHELVES = "getAllShelves";
+	public static final long serialVersionUID = 1L;
+	
+	
+	@ManyToOne
+	private Product product;
 	private int capacity;
-	private long productId;
 	private float dailyPrice;
 
-	public Shelf() {
+	
+
+	public Product getProduct() {
+		return product;
 	}
 
-	public Shelf(int capacity, float dailyPrice) {
-		this.capacity = capacity;
-		this.dailyPrice = dailyPrice;
-	}
-
-	public Shelf(int capacity, long productId, float dailyPrice) {
-		this.capacity = capacity;
-		this.productId = productId;
-		this.dailyPrice = dailyPrice;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getCapacity() {
@@ -28,14 +40,6 @@ public class Shelf extends Entity {
 		this.capacity = capacity;
 	}
 
-	public long getProductId() {
-		return productId;
-	}
-
-	public void setProductId(long productId) {
-		this.productId = productId;
-	}
-
 	public float getDailyPrice() {
 		return dailyPrice;
 	}
@@ -44,9 +48,6 @@ public class Shelf extends Entity {
 		this.dailyPrice = dailyPrice;
 	}
 
-	@Override
-	public String toString() {
-		return "Shelf [capacity=" + capacity + ", productId=" + productId + ", dailyPrice=" + dailyPrice + "]";
-	}
+	
 
 }

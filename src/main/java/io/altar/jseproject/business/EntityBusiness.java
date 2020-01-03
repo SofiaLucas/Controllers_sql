@@ -2,10 +2,10 @@ package io.altar.jseproject.business;
 
 import java.util.Collection;
 
-import io.altar.jseproject.model.Entity;
+import io.altar.jseproject.model.Entity_;
 import io.altar.jseproject.repositories.EntityRepository;
 
-public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity> implements BusinessServiceInterface<E> {
+public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity_> implements BusinessServiceInterface<E> {
 
 	protected R repository;
 

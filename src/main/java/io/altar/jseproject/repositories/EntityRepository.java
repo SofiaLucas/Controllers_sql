@@ -6,10 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-import io.altar.jseproject.model.Entity;
+import io.altar.jseproject.model.Entity_;
 //import io.altar.jseproject.model.Product;
 
-public abstract class EntityRepository<T extends Entity> {//implements EntityRepositoryInterface <Entity> {
+public abstract class EntityRepository<T extends Entity_> {//implements EntityRepositoryInterface <Entity> {
 
 	Map<Long, T> myMap = new HashMap<Long, T>();
 	long currentId = 0;

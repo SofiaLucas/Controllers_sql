@@ -2,9 +2,9 @@ package io.altar.jseproject.business;
 
 import java.util.Collection;
 
-import io.altar.jseproject.model.Entity;
+import io.altar.jseproject.model.Entity_;
 
-public interface BusinessServiceInterface<T extends Entity> {
+public interface BusinessServiceInterface<T extends Entity_> {
 
 	void create(T entity);
 

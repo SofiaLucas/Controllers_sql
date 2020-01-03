@@ -14,10 +14,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import io.altar.jseproject.business.EntityBusiness;
-import io.altar.jseproject.model.Entity;
+import io.altar.jseproject.model.Entity_;
 import io.altar.jseproject.repositories.EntityRepository;
 
-public class EntityControler<E extends Entity, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
+public class EntityControler<E extends Entity_, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
 
 	EntityBusiness<R, E> service;
 
