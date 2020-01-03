@@ -4,13 +4,15 @@ import io.altar.jseproject.model.Shelf;
 
 public class ShelfRepository extends EntityRepository<Shelf> {
 
-	private static final ShelfRepository INSTANCE = new ShelfRepository();
-
-	public static ShelfRepository getInstance() {
-
-		return INSTANCE;
+	@Override
+	protected Class<Shelf> getEntityClass() {
+		return Shelf.class;
 	}
 
-	private ShelfRepository() {
+	@Override
+	protected String getAllEntities() {
+		return Shelf.GET_ALL_SHELVES;
 	}
+
+	
 }

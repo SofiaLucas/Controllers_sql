@@ -2,6 +2,8 @@ package io.altar.jseproject.business;
 
 import java.util.Collection;
 
+import javax.inject.Inject;
+
 import io.altar.jseproject.model.Entity_;
 import io.altar.jseproject.repositories.EntityRepository;
 
@@ -9,7 +11,7 @@ public abstract class EntityBusiness<R extends EntityRepository<E>, E extends En
 
 	protected R repository;
 
-	@Override
+	@Inject
 	public void create(E entity) {
 		repository.create(entity);
 

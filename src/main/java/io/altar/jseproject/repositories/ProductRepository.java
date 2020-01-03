@@ -4,17 +4,16 @@ import io.altar.jseproject.model.Product;
 
 public class ProductRepository extends EntityRepository<Product> {
 	
-	
-	private static final  ProductRepository INSTANCE = new ProductRepository();
-
-	
-	public static ProductRepository getInstance () {
+	@Override
+	protected Class <Product> getEntityClass(){
 		
-		return INSTANCE;
+		return Product.class;
 	}
 	
-	
-	private ProductRepository() {
+
+	@Override
+	protected String getAllEntities() {
+		return Product.GET_ALL_PRODUCTS;
 	}
 	
 	
