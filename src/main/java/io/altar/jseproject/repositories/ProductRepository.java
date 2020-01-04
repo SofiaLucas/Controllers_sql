@@ -6,7 +6,6 @@ public class ProductRepository extends EntityRepository<Product> {
 	
 	@Override
 	protected Class <Product> getEntityClass(){
-		
 		return Product.class;
 	}
 	
@@ -14,6 +13,12 @@ public class ProductRepository extends EntityRepository<Product> {
 	@Override
 	protected String getAllEntities() {
 		return Product.GET_ALL_PRODUCTS;
+	}
+
+
+	@Override
+	protected String getAllEntitiesIds() {
+		return Product.GET_ALL_PRODUCTS_IDS;
 	}
 	
 	

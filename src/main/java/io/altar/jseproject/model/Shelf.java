@@ -15,6 +15,7 @@ public class Shelf extends Entity_ implements Serializable{
 	
 	public static final String GET_ALL_SHELVES = "getAllShelves";
 	public static final long serialVersionUID = 1L;
+	public static final String GET_ALL_SHELVES_IDS = "getAllShelvesIds";
 	
 	
 	@ManyToOne

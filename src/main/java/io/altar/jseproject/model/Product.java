@@ -20,9 +20,9 @@ import javax.persistence.OneToMany;
 public class Product extends Entity_ implements Serializable {
 
 	public static final String GET_ALL_PRODUCTS = "getAllProducts";
+	public static final String GET_ALL_PRODUCTS_IDS =  "getAllProductsIds"; //////
+	
 	public static final long serialVersionUID = 1L;
-	
-	
 	
 	@OneToMany (mappedBy= "product", fetch  = FetchType.EAGER )
 	private List<Shelf> shelves;
