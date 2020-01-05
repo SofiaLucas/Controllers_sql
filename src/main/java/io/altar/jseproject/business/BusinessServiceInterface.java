@@ -14,12 +14,12 @@ public interface BusinessServiceInterface<T extends Entity_> {
 
 	Collection<T> getAll();
 	
-	 T getbyId(long id) throws IllegalArgumentException;
+	 T getbyId(long id);
 
 	 long [] getAllIds();
 	
-	boolean isEmpty();
-	
-	void size();
+//	boolean isEmpty();
+//	
+//	void size();
 	
 }

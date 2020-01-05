@@ -1,6 +1,8 @@
 package io.altar.jseproject.controlers;
 
 
+import java.util.Collection;
+
 import javax.ws.rs.GET;
 
 import javax.ws.rs.Path;
@@ -17,19 +19,11 @@ import io.altar.jseproject.repositories.ShelfRepository;
 @Path("shelves")
 public class ShelfControler extends EntityControler <Shelf, ShelfBusiness, ShelfRepository>{
 
-	
-	public ShelfControler() {
-		service = new ShelfBusiness();
-	}
-
-	@Context
-	protected UriInfo context;
-
 	@GET
-	@Path("status")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String status() {
-		return "Url : " + context.getRequestUri().toString() + " is OK";
+	@Produces(MediaType.APPLICATION_JSON)
+	public Collection<Shelf> getAll() {
+		return service.getAll();
 	}
+	
 
 }

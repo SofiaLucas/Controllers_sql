@@ -3,15 +3,19 @@ package io.altar.jseproject.business;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 
 import io.altar.jseproject.model.Entity_;
 import io.altar.jseproject.repositories.EntityRepository;
-
+@Transactional
 public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity_> implements BusinessServiceInterface<E> {
-
+	
+	@Inject
 	protected R repository;
 
-	@Inject
+	
+	
+	@Override
 	public void create(E entity) {
 		repository.create(entity);
 
@@ -36,10 +40,13 @@ public abstract class EntityBusiness<R extends EntityRepository<E>, E extends En
 	}
 
 	@Override
-	public E getbyId(long id) throws IllegalArgumentException {
+	public E getbyId(long id) {
 		E entity = repository.getbyId(id);
 		if (entity == null) {
-			throw new IllegalArgumentException("id does not exist");
+			//throw new IllegalArgumentException("id does not exist");
+			throw new IllegalArgumentException(
+					String.format("No %s with Id [%d].",getEntityClassName() ,id));
+	
 		}
 		return entity;
 	}
@@ -49,15 +56,17 @@ public abstract class EntityBusiness<R extends EntityRepository<E>, E extends En
 		return repository.getAllIds();
 	}
 
-	@Override
-	public boolean isEmpty() {
-		return repository.isEmpty();
-	}
-
-	@Override
-	public void size() {
-		repository.size();
-
-	}
+	
+	protected abstract String getEntityClassName();
+//	@Override
+//	public boolean isEmpty() {
+//		return repository.isEmpty();
+//	}
+//
+//	@Override
+//	public void size() {
+//		repository.size();
+//
+//	}
 
 }

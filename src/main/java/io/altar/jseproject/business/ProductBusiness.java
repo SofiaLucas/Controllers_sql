@@ -6,12 +6,6 @@ import io.altar.jseproject.repositories.ProductRepository;
 
 public class ProductBusiness extends EntityBusiness<ProductRepository, Product> implements BusinessProductInterface {
 
-	public static final ShelfBusiness SB = new ShelfBusiness();
-
-	public ProductBusiness() {
-		repository = ProductRepository.getInstance();
-	}
-
 	@Override
 	public void create(Product prod) throws IllegalArgumentException {
 
@@ -109,5 +103,14 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product> 
 //		return productInShelf;
 		return null;
 	}
+
+	
+
+	@Override
+	protected String getEntityClassName() {
+		return Product.getName();
+	}
+
+	
 
 }

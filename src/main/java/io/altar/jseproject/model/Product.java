@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
@@ -12,19 +13,23 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 
+
 @Entity
 @NamedQueries({
-	@NamedQuery (name=Product.GET_ALL_PRODUCTS, query= "SELECT p FROM Product p")
+	@NamedQuery (name=Product.GET_ALL_PRODUCTS, query= "SELECT p FROM Product p"),
+	@NamedQuery(name = Product.GET_ALL_PRODUCTS_IDS, query = "SELECT p.id FROM Product p"),
+	@NamedQuery(name = Product.GET_PRODUCTS_COUNT, query = "SELECT COUNT(p.id) FROM Product p")
 })
 
 public class Product extends Entity_ implements Serializable {
 
 	public static final String GET_ALL_PRODUCTS = "getAllProducts";
 	public static final String GET_ALL_PRODUCTS_IDS =  "getAllProductsIds"; //////
+	public static final String GET_PRODUCTS_COUNT = "getProductsCount";
 	
 	public static final long serialVersionUID = 1L;
 	
-	@OneToMany (mappedBy= "product", fetch  = FetchType.EAGER )
+	@OneToMany (cascade = { CascadeType.MERGE, CascadeType.PERSIST },mappedBy= "product", fetch  = FetchType.EAGER )
 	private List<Shelf> shelves;
 	private int discount;
 	private int iva;

@@ -9,11 +9,7 @@ import io.altar.jseproject.model.Shelf;
 import io.altar.jseproject.repositories.ShelfRepository;
 
 public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implements BusinessShelfInterface {
-	public static final ProductBusiness PB = new ProductBusiness();
 	
-	public ShelfBusiness() {
-		repository = ShelfRepository.getInstance();
-	}
 
 	
 	@Override
@@ -95,6 +91,12 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implem
 //				repository.edit(shelf);
 //			}
 //		}
+	}
+
+
+	@Override
+	protected String getEntityClassName() {
+		return Shelf.getName();
 	}
 
 }
