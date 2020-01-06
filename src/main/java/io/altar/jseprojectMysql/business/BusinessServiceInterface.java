@@ -1,8 +1,8 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
 import java.util.Collection;
 
-import io.altar.jseproject.model.Entity_;
+import io.altar.jseprojectMysql.model.Entity_;
 
 public interface BusinessServiceInterface<T extends Entity_> {
 

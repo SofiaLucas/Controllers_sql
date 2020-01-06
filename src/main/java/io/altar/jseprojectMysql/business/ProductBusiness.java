@@ -1,9 +1,11 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
-import java.util.List;
-import io.altar.jseproject.model.Product;
-import io.altar.jseproject.repositories.ProductRepository;
+import javax.enterprise.context.RequestScoped;
 
+import io.altar.jseprojectMysql.model.Product;
+import io.altar.jseprojectMysql.repositories.ProductRepository;
+
+@RequestScoped
 public class ProductBusiness extends EntityBusiness<ProductRepository, Product> implements BusinessProductInterface {
 
 	@Override

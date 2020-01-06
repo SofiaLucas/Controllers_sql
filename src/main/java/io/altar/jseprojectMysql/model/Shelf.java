@@ -1,4 +1,4 @@
-package io.altar.jseproject.model;
+package io.altar.jseprojectMysql.model;
 
 import java.io.Serializable;
 

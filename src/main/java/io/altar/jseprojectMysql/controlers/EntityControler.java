@@ -1,9 +1,7 @@
-package io.altar.jseproject.controlers;
-
-import java.util.Collection;
-import java.util.List;
+package io.altar.jseprojectMysql.controlers;
 
 import javax.inject.Inject;
+import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -17,13 +15,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
-import io.altar.jseproject.business.EntityBusiness;
-import io.altar.jseproject.model.Entity_;
-import io.altar.jseproject.repositories.EntityRepository;
+import io.altar.jseprojectMysql.business.EntityBusiness;
+import io.altar.jseprojectMysql.model.Entity_;
+import io.altar.jseprojectMysql.repositories.EntityRepository;
 
+@Transactional
 public class EntityControler<E extends Entity_, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
-
-	//EntityBusiness<R, E> service;
+	
 	@Inject
 	protected B service;
 	

@@ -1,13 +1,15 @@
-package io.altar.jseproject.repositories;
+package io.altar.jseprojectMysql.repositories;
 
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
-import io.altar.jseproject.model.Entity_;
+import io.altar.jseprojectMysql.model.Entity_;
 
+@Transactional
 public abstract class EntityRepository<T extends Entity_> {//implements EntityRepositoryInterface <Entity> {
 
 	@PersistenceContext (unitName = "database")
@@ -54,8 +56,8 @@ public abstract class EntityRepository<T extends Entity_> {//implements EntityRe
 	}
 
 	//soluçao do joao:
-//	public void removeEntity(long id) {
-//		T entity = getEntity(id);
+//	public void remove(long id) {
+//		T entity = getbyId(id);
 //		if(entity != null) {
 //			em.remove(entity);
 //		}

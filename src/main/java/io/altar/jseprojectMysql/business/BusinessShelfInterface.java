@@ -1,9 +1,8 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
 import java.util.List;
 
-import io.altar.jseproject.model.Shelf;
-import io.altar.jseproject.repositories.ShelfRepository;
+import io.altar.jseprojectMysql.model.Shelf;
 
 public interface BusinessShelfInterface extends BusinessServiceInterface <Shelf> {
 	

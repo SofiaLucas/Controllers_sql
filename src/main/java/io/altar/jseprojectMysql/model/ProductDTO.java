@@ -1,12 +1,14 @@
-package io.altar.jseproject.model;
+package io.altar.jseprojectMysql.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductDTO {
+public class ProductDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private long id;
 	private List<Long> shelfIds = new ArrayList<Long>();
 	private int discount;
 	private int iva;
@@ -15,7 +17,8 @@ public class ProductDTO {
 	public ProductDTO() {
 	}
 
-	public ProductDTO(List<Long> shelfIds, int discount, int iva, float pvp) {
+	public ProductDTO(long id, List<Long> shelfIds, int discount, int iva, float pvp) {
+		this.id=id;
 		this.shelfIds = shelfIds;
 		this.discount = discount;
 		this.iva = iva;
@@ -52,5 +55,13 @@ public class ProductDTO {
 
 	public void setPvp(float pvp) {
 		this.pvp = pvp;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

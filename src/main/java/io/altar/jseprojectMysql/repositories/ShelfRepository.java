@@ -1,7 +1,10 @@
-package io.altar.jseproject.repositories;
+package io.altar.jseprojectMysql.repositories;
 
-import io.altar.jseproject.model.Shelf;
+import javax.enterprise.context.RequestScoped;
 
+import io.altar.jseprojectMysql.model.Shelf;
+
+@RequestScoped
 public class ShelfRepository extends EntityRepository<Shelf> {
 
 	@Override

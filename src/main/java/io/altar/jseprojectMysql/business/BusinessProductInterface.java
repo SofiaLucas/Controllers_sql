@@ -1,10 +1,6 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
-import java.util.List;
-
-import io.altar.jseproject.model.Product;
-
-import io.altar.jseproject.repositories.ProductRepository;
+import io.altar.jseprojectMysql.model.Product;
 
 public interface BusinessProductInterface extends BusinessServiceInterface<Product> {
 

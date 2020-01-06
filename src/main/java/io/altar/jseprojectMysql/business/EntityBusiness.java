@@ -1,19 +1,19 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
 import java.util.Collection;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import io.altar.jseproject.model.Entity_;
-import io.altar.jseproject.repositories.EntityRepository;
+import io.altar.jseprojectMysql.model.Entity_;
+import io.altar.jseprojectMysql.repositories.EntityRepository;
+
 @Transactional
 public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity_> implements BusinessServiceInterface<E> {
 	
 	@Inject
 	protected R repository;
 
-	
 	
 	@Override
 	public void create(E entity) {

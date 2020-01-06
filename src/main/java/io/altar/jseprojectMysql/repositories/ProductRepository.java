@@ -1,7 +1,10 @@
-package io.altar.jseproject.repositories;
+package io.altar.jseprojectMysql.repositories;
 
-import io.altar.jseproject.model.Product;
+import javax.enterprise.context.RequestScoped;
 
+import io.altar.jseprojectMysql.model.Product;
+
+@RequestScoped
 public class ProductRepository extends EntityRepository<Product> {
 	
 	@Override

@@ -1,4 +1,4 @@
-package io.altar.jseproject;
+package io.altar.jseprojectMysql;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

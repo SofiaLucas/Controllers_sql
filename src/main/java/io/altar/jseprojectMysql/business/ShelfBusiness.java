@@ -1,16 +1,21 @@
-package io.altar.jseproject.business;
+package io.altar.jseprojectMysql.business;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import io.altar.jseproject.model.Product;
-import io.altar.jseproject.model.Shelf;
-import io.altar.jseproject.repositories.ShelfRepository;
 
+import javax.enterprise.context.RequestScoped;
+
+import io.altar.jseprojectMysql.model.Shelf;
+import io.altar.jseprojectMysql.repositories.ShelfRepository;
+
+@RequestScoped
 public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf> implements BusinessShelfInterface {
 	
 
+	
+	
+	
+	
+	
 	
 	@Override
 	public void edit(Shelf shelf) throws IllegalArgumentException{
