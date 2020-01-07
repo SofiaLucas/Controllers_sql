@@ -19,8 +19,7 @@ import io.altar.jseprojectMysql.business.EntityBusiness;
 import io.altar.jseprojectMysql.model.Entity_;
 import io.altar.jseprojectMysql.repositories.EntityRepository;
 
-@Transactional
-public class EntityControler<E extends Entity_, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
+public abstract class EntityControler<E extends Entity_, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
 	
 	@Inject
 	protected B service;
