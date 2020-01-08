@@ -18,8 +18,6 @@ public interface BusinessServiceInterface<T extends Entity_> {
 
 	 long [] getAllIds();
 	
-//	boolean isEmpty();
-//	
-//	void size();
+
 	
 }

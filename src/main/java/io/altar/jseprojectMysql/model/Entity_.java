@@ -8,7 +8,7 @@ import javax.persistence.MappedSuperclass;
 
 
 @MappedSuperclass
-public class Entity_ implements Serializable{
+public abstract class Entity_ <D> implements Serializable{
 
 	
 	private static final long serialVersionUID = 1L;
@@ -25,5 +25,5 @@ public class Entity_ implements Serializable{
 			this.id = id;
 		}
 
-		
+		public abstract D toDTO();
 }

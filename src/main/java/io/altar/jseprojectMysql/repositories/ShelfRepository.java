@@ -3,9 +3,10 @@ package io.altar.jseprojectMysql.repositories;
 import javax.enterprise.context.RequestScoped;
 
 import io.altar.jseprojectMysql.model.Shelf;
+import io.altar.jseprojectMysql.model.DTOs.ShelfDTO;
 
 @RequestScoped
-public class ShelfRepository extends EntityRepository<Shelf> {
+public class ShelfRepository extends EntityRepository<Shelf, ShelfDTO> {
 
 	@Override
 	protected Class<Shelf> getEntityClass() {

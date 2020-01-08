@@ -3,9 +3,10 @@ package io.altar.jseprojectMysql.repositories;
 import javax.enterprise.context.RequestScoped;
 
 import io.altar.jseprojectMysql.model.Product;
+import io.altar.jseprojectMysql.model.DTOs.ProductDTO;
 
 @RequestScoped
-public class ProductRepository extends EntityRepository<Product> {
+public class ProductRepository extends EntityRepository<Product, ProductDTO> {
 	
 	@Override
 	protected Class <Product> getEntityClass(){

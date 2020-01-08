@@ -3,9 +3,12 @@ package io.altar.jseprojectMysql.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
+import io.altar.jseprojectMysql.model.DTOs.ShelfDTO;
 
 
 @Entity
@@ -18,7 +21,7 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(name = Shelf.SHELVES_PRODUCT_TO_NULL, query="UPDATE Shelf s SET s.product = null WHERE s.product.id = :productId")
 
 })
-public class Shelf extends Entity_ implements Serializable{
+public class Shelf extends Entity_<ShelfDTO> implements Serializable{
 	
 	public static final String GET_ALL_SHELVES = "getAllShelves";
 	public static final String GET_ALL_SHELVES_IDS = "getAllShelvesIds";
@@ -29,7 +32,7 @@ public class Shelf extends Entity_ implements Serializable{
 	
 	public static final long serialVersionUID = 1L;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Product product;
 	private int capacity;
 	private float dailyPrice;
@@ -62,9 +65,20 @@ public class Shelf extends Entity_ implements Serializable{
 		this.dailyPrice = dailyPrice;
 	}
 
+
+	@Override
+	public ShelfDTO toDTO() {
+				
+		return new ShelfDTO(
+				this.getId(), 
+				this.getCapacity(), 
+				(this.getProduct() ==null) ? 0 : this.getProduct().getId(),
+				this.getDailyPrice());
+	}
 	
 	@Override
 	public String toString() {
-		return "Shelf [product=" + product + ", capacity=" + capacity + ", dailyPrice=" + dailyPrice + "]";
+		long productId = (product == null) ? 0 : product.getId();
+		return "Shelf [product=" + productId + ", capacity=" + capacity + ", dailyPrice=" + dailyPrice + "]";
 	}
 }

@@ -1,5 +1,8 @@
 package io.altar.jseprojectMysql.controlers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -15,11 +18,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+
 import io.altar.jseprojectMysql.business.EntityBusiness;
 import io.altar.jseprojectMysql.model.Entity_;
+import io.altar.jseprojectMysql.model.DTOs.EntityDTO;
 import io.altar.jseprojectMysql.repositories.EntityRepository;
 
-public abstract class EntityControler<E extends Entity_, B extends EntityBusiness<R, E>, R extends EntityRepository<E>> {
+public abstract class EntityControler<E extends Entity_<D>, B extends EntityBusiness<R, E, D>, R extends EntityRepository<E, D>,D extends EntityDTO> {
 	
 	@Inject
 	protected B service;
@@ -34,6 +39,13 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 		return "Url : " + context.getRequestUri().toString() + " is Ok";
 	}
 	
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<D> getAll () {
+		return service.getAll().stream().map(E::toDTO).collect(Collectors.toList());
+		
+	}
+	
 	//joao:
 //	@GET
 //	@Path("allIds")
@@ -45,8 +57,9 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response create(E entity) {
+	public Response create(D entityDTO) {
 		try {
+			E entity = toEntity(entityDTO);
 			service.create(entity);
 			return Response.ok().build();
 		} catch (Exception e) {
@@ -54,15 +67,7 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 		}
 
 	}
-	//joao:
-//	@POST
-//	@Path("list")
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	@Produces(MediaType.TEXT_PLAIN)
-//	public String save(List<E> entities) {
-//		entities.forEach(entity -> this.save(entity));
-//		return "Done";
-//	}
+
 
 	@DELETE
 	@Path("/{id}")
@@ -81,10 +86,11 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response edit(@PathParam("id") long id, E entity) {
+//	@Produces(MediaType.APPLICATION_JSON)
+	public Response edit(@PathParam("id") long id, D entityDTO) {
 
 		try {
+			E entity = toEntity(entityDTO);
 			service.edit(entity);
 			return Response.ok().build();
 		} catch (Exception e) {
@@ -97,7 +103,7 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response consult(@PathParam("id") long id) {
 		try {
-			E entity = service.getbyId(id);
+			D entity = service.getbyId(id).toDTO();
 			return Response.status(200).entity(entity).build();
 		} catch (Exception e) {
 			return Response.status(400).entity(e.getMessage()).build();
@@ -105,4 +111,5 @@ public abstract class EntityControler<E extends Entity_, B extends EntityBusines
 
 	}
 
+	public abstract E toEntity(D entityDTO);
 }

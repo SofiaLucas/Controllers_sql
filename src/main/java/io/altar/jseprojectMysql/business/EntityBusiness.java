@@ -5,11 +5,13 @@ import java.util.Collection;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+
 import io.altar.jseprojectMysql.model.Entity_;
+import io.altar.jseprojectMysql.model.DTOs.EntityDTO;
 import io.altar.jseprojectMysql.repositories.EntityRepository;
 
 @Transactional
-public abstract class EntityBusiness<R extends EntityRepository<E>, E extends Entity_> implements BusinessServiceInterface<E> {
+public abstract class EntityBusiness<R extends EntityRepository<E, D>, E extends Entity_<D>,D extends EntityDTO> implements BusinessServiceInterface<E> {
 	
 	@Inject
 	protected R repository;
@@ -58,15 +60,6 @@ public abstract class EntityBusiness<R extends EntityRepository<E>, E extends En
 
 	
 	protected abstract String getEntityClassName();
-//	@Override
-//	public boolean isEmpty() {
-//		return repository.isEmpty();
-//	}
-//
-//	@Override
-//	public void size() {
-//		repository.size();
-//
-//	}
+
 
 }

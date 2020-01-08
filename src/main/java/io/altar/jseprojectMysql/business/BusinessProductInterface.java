@@ -8,5 +8,10 @@ public interface BusinessProductInterface extends BusinessServiceInterface<Produ
 
 	//void addProductToShelf(Product productToAdd, List<Long> selectedId) throws NoSuchFieldException;
 
-	Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf);
+	
+	
+	
+	
+	
+	//Product updateshelvesIdsInProduct(Product productInShelf, long productIdInShelf);
 }

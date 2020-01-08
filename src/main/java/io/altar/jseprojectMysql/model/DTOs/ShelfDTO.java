@@ -1,12 +1,11 @@
-package io.altar.jseprojectMysql.model;
+package io.altar.jseprojectMysql.model.DTOs;
 
-import java.io.Serializable;
 
-public class ShelfDTO implements Serializable {
+public class ShelfDTO extends EntityDTO {
 
-	private static final long serialVersionUID = 1L;
+	//private static final long serialVersionUID = 1L;
 	
-	private long id;
+//	private long id;
 	private int capacity;
 	private long productId;
 	private float dailyPrice;
@@ -55,11 +54,5 @@ public class ShelfDTO implements Serializable {
 		return "Shelf [capacity=" + capacity + ", productId=" + productId + ", dailyPrice=" + dailyPrice + "]";
 	}
 
-	public long getId() {
-		return id;
-	}
 
-	public void setId(long id) {
-		this.id = id;
-	}
 }

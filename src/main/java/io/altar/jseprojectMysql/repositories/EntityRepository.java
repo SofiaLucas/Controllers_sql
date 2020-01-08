@@ -7,10 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+
 import io.altar.jseprojectMysql.model.Entity_;
+import io.altar.jseprojectMysql.model.DTOs.EntityDTO;
 
 @Transactional
-public abstract class EntityRepository<T extends Entity_> {//implements EntityRepositoryInterface <Entity> {
+public abstract class EntityRepository<T extends Entity_<D>,D extends EntityDTO> {
 
 	@PersistenceContext (unitName = "database")
 	protected EntityManager em;
