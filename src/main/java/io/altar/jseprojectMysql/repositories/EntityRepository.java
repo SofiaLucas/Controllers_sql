@@ -22,14 +22,8 @@ public abstract class EntityRepository<T extends Entity_<D>,D extends EntityDTO>
 
 	protected abstract String getAllEntitiesIds();
 	
-	public long[] getAllIds() { // ver se não dá para por em lista
-		Object[] objectArray =  em.createNamedQuery(getAllEntitiesIds(), Long.class).getResultList().toArray();
-
-	long[] idArr = new long[objectArray.length];
-	for (int i = 0; i < objectArray.length; i++) {
-		idArr[i] = (long) objectArray[i];
-	}
-	return idArr;
+	public List<Long> getAllIds() { 
+		return em.createNamedQuery(getAllEntitiesIds(), Long.class).getResultList();
 }
 
 	

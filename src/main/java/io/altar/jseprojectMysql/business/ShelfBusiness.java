@@ -5,15 +5,12 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 
 import io.altar.jseprojectMysql.model.Shelf;
+import io.altar.jseprojectMysql.model.DTOs.ProductDTO;
 import io.altar.jseprojectMysql.model.DTOs.ShelfDTO;
 import io.altar.jseprojectMysql.repositories.ShelfRepository;
 
 @RequestScoped
 public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf, ShelfDTO> implements BusinessShelfInterface {
-	
-
-
-	
 	
 	
 //	@Override
@@ -97,6 +94,10 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf, ShelfD
 ////		}
 //	}
 
+	
+	public void removeProductFromShelf(long id) {
+		repository.removeProductFromShelf(id); 
+	}
 
 	@Override
 	protected String getEntityClassName() {

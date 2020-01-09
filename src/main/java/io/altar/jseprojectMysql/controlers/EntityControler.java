@@ -43,16 +43,8 @@ public abstract class EntityControler<E extends Entity_<D>, B extends EntityBusi
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<D> getAll () {
 		return service.getAll().stream().map(E::toDTO).collect(Collectors.toList());
-		
-	}
+			}
 	
-	//joao:
-//	@GET
-//	@Path("allIds")
-//	@Produces(MediaType.APPLICATION_JSON)
-//	public List<Long> getAllIds() {
-//		return service.getAllIds();
-//	}
 
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -62,7 +54,9 @@ public abstract class EntityControler<E extends Entity_<D>, B extends EntityBusi
 			E entity = toEntity(entityDTO);
 			service.create(entity);
 			return Response.ok().build();
+			//	return Response.status(200).entity(entity.toDTO()).build(); // esta a criar mas nao esta a "imprimir"
 		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 
@@ -94,6 +88,7 @@ public abstract class EntityControler<E extends Entity_<D>, B extends EntityBusi
 			service.edit(entity);
 			return Response.ok().build();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 	}
@@ -106,6 +101,7 @@ public abstract class EntityControler<E extends Entity_<D>, B extends EntityBusi
 			D entity = service.getbyId(id).toDTO();
 			return Response.status(200).entity(entity).build();
 		} catch (Exception e) {
+			e.printStackTrace();
 			return Response.status(400).entity(e.getMessage()).build();
 		}
 

@@ -1,7 +1,5 @@
 package io.altar.jseprojectMysql.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -21,7 +19,7 @@ import io.altar.jseprojectMysql.model.DTOs.ShelfDTO;
 	@NamedQuery(name = Shelf.SHELVES_PRODUCT_TO_NULL, query="UPDATE Shelf s SET s.product = null WHERE s.product.id = :productId")
 
 })
-public class Shelf extends Entity_<ShelfDTO> implements Serializable{
+public class Shelf extends Entity_<ShelfDTO> {
 	
 	public static final String GET_ALL_SHELVES = "getAllShelves";
 	public static final String GET_ALL_SHELVES_IDS = "getAllShelvesIds";

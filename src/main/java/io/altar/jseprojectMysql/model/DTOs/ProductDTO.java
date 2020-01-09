@@ -8,8 +8,8 @@ public class ProductDTO extends EntityDTO {
 
 	//private static final long serialVersionUID = 1L;
 
-	private long id;
-	private List<Long> shelfIds = new ArrayList<Long>();
+//	private long id;
+	private List<Long> shelfIds;
 	private int discount;
 	private int iva;
 	private float pvp;
@@ -55,6 +55,10 @@ public class ProductDTO extends EntityDTO {
 
 	public void setPvp(float pvp) {
 		this.pvp = pvp;
+	}
+	@Override
+	public String toString() {
+		return "ProductDTO [shelfIds=" + shelfIds + ", discount=" + discount + ", iva=" + iva + ", pvp=" + pvp + "]";
 	}
 
 }

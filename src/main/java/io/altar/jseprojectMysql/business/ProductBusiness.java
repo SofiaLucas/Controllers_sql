@@ -29,57 +29,57 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product, 
 
 		repository.create(prod);
 	}
+
+	@Override
+	public void edit(Product product) throws IllegalArgumentException {
+//		Product oldProd = repository.getbyId(product.getId());
+//		List<Long> oldProdShelves = oldProd.getShelvesIds();
+//		List<Long> newProdShelves = product.getShelvesIds();
+//		List<Long> emptyShelvesIds = SB.selectEmptyShelves();
+
+//		if (!newProdShelves.isEmpty() && emptyShelvesIds.isEmpty()) {
+//			throw new IllegalArgumentException("ids de prateleiras invalidos - nao ha prateleiras vazias");
+//		}
 //
-//	@Override
-//	public void edit(Product product) throws IllegalArgumentException {
-////		Product oldProd = repository.getbyId(product.getId());
-////		List<Long> oldProdShelves = oldProd.getShelvesIds();
-////		List<Long> newProdShelves = product.getShelvesIds();
-////		List<Long> emptyShelvesIds = SB.selectEmptyShelves();
-////
-////		if (!newProdShelves.isEmpty() && emptyShelvesIds.isEmpty()) {
-////			throw new IllegalArgumentException("ids de prateleiras invalidos - nao ha prateleiras vazias");
-////		}
-////
-////		if (!newProdShelves.isEmpty() && !oldProdShelves.equals(newProdShelves)) {
-////
-////			System.out.println("newProdShelves antes do remove : " + newProdShelves);
-////			newProdShelves.removeAll(oldProdShelves);
-////			System.out.println("oldProdShelves: " + oldProdShelves);
-////			System.out.println("newProdShelves depois do remove : " + newProdShelves);
-////
-////			for (Long shId : newProdShelves) {
-////				if (!emptyShelvesIds.contains(shId)) {
-////					throw new IllegalArgumentException("ids de prateleiras invalidos; prateleiras vazias:" + emptyShelvesIds);
-////				}
-////			}
-////		}
-////
-////		if (!oldProdShelves.equals(newProdShelves)) {
-////			SB.updateProductOnShelfs(product.getId(), oldProdShelves, product.getShelvesIds()); // ver se fez diferença
-////		}
-////
-////		
-////		//-----
-////		int[] iva = { 6, 13, 23 };
-////		boolean check = false;
-////		for (int i = 0; i < iva.length; i++) {
-////			if (product.getIva() == iva[i]) {
-////				check = true;
-////			}
-////		}
-////		if (check == false) {
-////			throw new IllegalArgumentException("iva should be 6, 13 or 23");
-////		}
-////
-////		if (product.getDiscount() < 0 || product.getDiscount() > 100) {
-////			throw new IllegalArgumentException("discount should be 0-100");
-////		}
-////
-////		repository.edit(product);
-////		
+//		if (!newProdShelves.isEmpty() && !oldProdShelves.equals(newProdShelves)) {
 //
-//	}
+//			System.out.println("newProdShelves antes do remove : " + newProdShelves);
+//			newProdShelves.removeAll(oldProdShelves);
+//			System.out.println("oldProdShelves: " + oldProdShelves);
+//			System.out.println("newProdShelves depois do remove : " + newProdShelves);
+//
+//			for (Long shId : newProdShelves) {
+//				if (!emptyShelvesIds.contains(shId)) {
+//					throw new IllegalArgumentException("ids de prateleiras invalidos; prateleiras vazias:" + emptyShelvesIds);
+//				}
+//			}
+//		}
+//
+//		if (!oldProdShelves.equals(newProdShelves)) {
+//			SB.updateProductOnShelfs(product.getId(), oldProdShelves, product.getShelvesIds()); // ver se fez diferença
+//		}
+
+		
+		//-----
+		int[] iva = { 6, 13, 23 };
+		boolean check = false;
+		for (int i = 0; i < iva.length; i++) {
+			if (product.getIva() == iva[i]) {
+				check = true;
+			}
+		}
+		if (check == false) {
+			throw new IllegalArgumentException("iva should be 6, 13 or 23");
+		}
+
+		if (product.getDiscount() < 0 || product.getDiscount() > 100) {
+			throw new IllegalArgumentException("discount should be 0-100");
+		}
+
+		repository.edit(product);
+		
+
+	}
 //
 //	@Override
 //	public void remove(Product productToRemove) {

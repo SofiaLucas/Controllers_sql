@@ -1,6 +1,7 @@
 package io.altar.jseprojectMysql.business;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -54,7 +55,7 @@ public abstract class EntityBusiness<R extends EntityRepository<E, D>, E extends
 	}
 
 	@Override
-	public long[] getAllIds() {
+	public List<Long> getAllIds() {
 		return repository.getAllIds();
 	}
 

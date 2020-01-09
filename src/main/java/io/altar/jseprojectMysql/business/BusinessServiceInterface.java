@@ -1,6 +1,7 @@
 package io.altar.jseprojectMysql.business;
 
 import java.util.Collection;
+import java.util.List;
 
 import io.altar.jseprojectMysql.model.Entity_;
 
@@ -16,7 +17,7 @@ public interface BusinessServiceInterface<T extends Entity_> {
 	
 	 T getbyId(long id);
 
-	 long [] getAllIds();
+	 List<Long> getAllIds();
 	
 
 	

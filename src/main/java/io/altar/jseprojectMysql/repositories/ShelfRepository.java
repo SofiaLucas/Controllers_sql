@@ -1,5 +1,7 @@
 package io.altar.jseprojectMysql.repositories;
 
+import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 
 import io.altar.jseprojectMysql.model.Shelf;
@@ -23,5 +25,17 @@ public class ShelfRepository extends EntityRepository<Shelf, ShelfDTO> {
 		return Shelf.GET_ALL_SHELVES_IDS;
 	}
 
+	public List <Shelf> getEmptyShelves(){
+		return em.createNamedQuery(Shelf.GET_EMPTY_SHELVES, getEntityClass()).getResultList();
+	}
+	
+	public void removeProductFromShelf (long id) {
+		em.createNamedQuery(Shelf.SHELVES_PRODUCT_TO_NULL).setParameter("productId", id).executeUpdate();
+		
+	}
+	
+
+	
+	
 	
 }

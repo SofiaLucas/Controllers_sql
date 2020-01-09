@@ -29,7 +29,7 @@ public class ShelfControler extends EntityControler <Shelf, ShelfBusiness, Shelf
 //	}
 	
 
-	
+	@Override	
 	public Shelf toEntity (ShelfDTO shelfDTO) {
 		Shelf shelf = new Shelf();
 		if(shelfDTO.getId()>0) {
@@ -39,8 +39,7 @@ public class ShelfControler extends EntityControler <Shelf, ShelfBusiness, Shelf
 		shelf.setCapacity(shelfDTO.getCapacity());
 		shelf.setDailyPrice(shelfDTO.getDailyPrice());
 		shelf.setProduct(shelfDTO.getProductId()>0 ? PB.getbyId(shelfDTO.getProductId()) : null);
-		
-		System.out.println(shelf);
+
 		return shelf;
 		
 	}
