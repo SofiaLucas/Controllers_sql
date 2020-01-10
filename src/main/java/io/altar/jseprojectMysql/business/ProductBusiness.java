@@ -1,7 +1,6 @@
 package io.altar.jseprojectMysql.business;
 
 import javax.enterprise.context.RequestScoped;
-
 import io.altar.jseprojectMysql.model.Product;
 import io.altar.jseprojectMysql.model.DTOs.ProductDTO;
 import io.altar.jseprojectMysql.repositories.ProductRepository;
@@ -80,15 +79,16 @@ public class ProductBusiness extends EntityBusiness<ProductRepository, Product, 
 		
 
 	}
-//
-//	@Override
-//	public void remove(Product productToRemove) {
-////		if (!productToRemove.getShelvesIds().isEmpty()) {
-////			SB.removeProductFromShelf(productToRemove.getId());
-////		}
-////		repository.remove(productToRemove);
-//
-//	}
+
+	@Override
+	public void remove(Product productToRemove) {
+		if (!productToRemove.getShelves().isEmpty()) {
+			throw new UnsupportedOperationException(String.format("Please remove shelves from product"));
+		}
+		else {
+		repository.remove(productToRemove);
+		}
+	}
 //
 //
 //	@Override

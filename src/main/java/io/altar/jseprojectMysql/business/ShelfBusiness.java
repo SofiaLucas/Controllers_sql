@@ -1,11 +1,9 @@
 package io.altar.jseprojectMysql.business;
 
-import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 
 import io.altar.jseprojectMysql.model.Shelf;
-import io.altar.jseprojectMysql.model.DTOs.ProductDTO;
 import io.altar.jseprojectMysql.model.DTOs.ShelfDTO;
 import io.altar.jseprojectMysql.repositories.ShelfRepository;
 
@@ -26,16 +24,19 @@ public class ShelfBusiness extends EntityBusiness<ShelfRepository, Shelf, ShelfD
 //	}
 //	
 //	
-//	@Override
-//	public void remove(Shelf shelfToRemove) {
-////		long productIdInShelf = shelfToRemove.getProductId();
-////		Product productInShelf = PB.getbyId(productIdInShelf);
-////		if (productIdInShelf != 0) {		
-////			PB.updateshelvesIdsInProduct(productInShelf, productIdInShelf); 											
-////		}
-////		repository.remove(shelfToRemove);
-//
-//	}
+	@Override
+	public void remove(Shelf shelfToRemove) {
+		
+		//long productIdInShelf = shelfToRemove.getProduct().getId();
+		if (shelfToRemove.getProduct() != null) {		
+			throw new UnsupportedOperationException(String.format("Please remove product [%d] from shelf", shelfToRemove.getProduct().getId()));										
+		}
+		else {
+			repository.remove(shelfToRemove);
+		}
+	
+
+	}
 //	
 //	
 //	
